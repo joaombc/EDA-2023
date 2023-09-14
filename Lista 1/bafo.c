@@ -11,6 +11,9 @@ int main(void){
         if(rodadas == 0){
             break;
         }
+        if (rodadas < 1 || rodadas > 1000) {
+            return 1;
+        }
 
         int aldo, beto, i;
         aldo = 0;
