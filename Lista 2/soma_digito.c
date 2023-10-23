@@ -1,20 +1,20 @@
 #include <stdio.h>
 
-int somaDigitos(int n) {
-    if (n == 0) {
-        return 0; 
-    } else {
-        return n % 10 + somaDigitos(n / 10);
+int soma = 0;
+void resultado(char* numero, int i) {
+
+    if (numero[i] == '\0'){
+        return;
     }
+    soma += numero[i] - '0';
+    return resultado(numero, i + 1);
 }
 
 int main() {
-    unsigned int n; 
-    scanf("%u", &n);
+    char* numero = malloc(101);
+    scanf("%s", numero);
 
-    int resultado = somaDigitos(n);
-
-    printf("%d\n", resultado);
-
+    resultado(numero, 0);
+    printf("%d\n", soma);
     return 0;
 }
