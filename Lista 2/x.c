@@ -1,34 +1,45 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
-void moveXToEnd(char *str) {
-    int len = strlen(str);
-    char result[101]; // string temporária 
-    int resultIndex = 0;
+typedef struct par {
+    int primeiro, segundo;
+} par;
 
-    for (int i = 0; i < len; i++) {
-        if (str[i] != 'x') {
-            result[resultIndex] = str[i];
-            resultIndex++;
-        }
+char string[101];
+par sem_x(int i, int j, char* tmp) {
+    if (string[i] == '\n' || string[i] == '\0') {
+        tmp[j] = '\0';
+        par pr;
+        pr.primeiro = i;
+        pr.segundo = j;
+        return pr;
     }
 
-    for (int i = 0; i < len; i++) {
-        if (str[i] == 'x') {
-            result[resultIndex] = 'x';
-            resultIndex++;
-        }
+    if (string[i] == 'x') return sem_x(i + 1, j, tmp);
+    else {
+        tmp[j] = string[i];
+        return sem_x(i + 1, j + 1, tmp);
+    }
+}
+
+void complete_with_x(int i, int n, char* tmp) {
+    if (n == i) {
+        tmp[i] = '\0';
+        return;
     }
 
-    result[resultIndex] = '\0';
-    strcpy(str, result);
+    tmp[i] = 'x';
+    return complete_with_x(i + 1, n, tmp);
 }
 
 int main() {
-    char str[101];
-    scanf("%s", str);
+    fgets(string, sizeof(string), stdin);
 
-    moveXToEnd(str);
+    char* tmp = malloc(101 * sizeof(char));
+    par end = sem_x(0, 0, tmp);
+    complete_with_x(end.segundo, end.primeiro, tmp);
 
-    printf("%s\n", str);
+    printf("%s\n", tmp);
 }
