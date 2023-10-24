@@ -273,3 +273,68 @@ int numero_de_folhas(p_no raiz) {
     
     return folhas_esq + folhas_dir;
 }
+
+/////////////////
+// Inserir no //
+///////////////
+
+p_no inserir_no(p_no raiz, int valor) {
+    // Se a árvore estiver vazia, crie um novo nó.
+    if (raiz == NULL) {
+        p_no novo_no = (p_no)malloc(sizeof(No));
+        novo_no->dado = valor;
+        novo_no->esq = NULL;
+        novo_no->dir = NULL;
+        return novo_no;
+    }
+
+    // Caso contrário, insira na subárvore esquerda ou direita, conforme necessário.
+    if (valor < raiz->dado) {
+        raiz->esq = inserir_no(raiz->esq, valor);
+    } else if (valor > raiz->dado) {
+        raiz->dir = inserir_no(raiz->dir, valor);
+    }
+
+    return raiz;
+}
+
+///////////////////////
+// Remover menor no //
+/////////////////////
+
+p_no encontrar_minimo(p_no raiz) {
+    p_no atual = raiz;
+    while (atual->esq != NULL) {
+        atual = atual->esq;
+    }
+    return atual;
+}
+
+p_no remover_no(p_no raiz, int valor) {
+    if (raiz == NULL) {
+        return raiz;
+    }
+
+    if (valor < raiz->dado) {
+        raiz->esq = remover_no(raiz->esq, valor);
+    } else if (valor > raiz->dado) {
+        raiz->dir = remover_no(raiz->dir, valor);
+    } else {
+        // Nó com um ou nenhum filho
+        if (raiz->esq == NULL) {
+            p_no temp = raiz->dir;
+            free(raiz);
+            return temp;
+        } else if (raiz->dir == NULL) {
+            p_no temp = raiz->esq;
+            free(raiz);
+            return temp;
+        }
+
+        // Nó com dois filhos: obtenha o sucessor in-order (menor nó na subárvore direita)
+        p_no temp = encontrar_minimo(raiz->dir);
+        raiz->dado = temp->dado;
+        raiz->dir = remover_no(raiz->dir, temp->dado);
+    }
+    return raiz;
+}
