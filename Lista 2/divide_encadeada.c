@@ -1,23 +1,22 @@
-void divide_lista(celula *l, celula *l1, celula *l2) {
-    celula *atual = l->prox;
-    celula *atual_l1 = l1;
-    celula *atual_l2 = l2;
+#include <stdlib.h>
 
-    while (atual != NULL) {
-        celula *proximo = atual->prox;
+typedef struct celula {
+    int dado;
+    struct celula* prox;
+} celula;
 
-        if (atual->dado % 2 == 0) {
-            // Número par, move para l2
-            atual_l2->prox = atual;
-            atual_l2 = atual_l2->prox;
-        } else {
-            // Número ímpar, move para l1
-            atual_l1->prox = atual;
-            atual_l1 = atual_l1->prox;
+void divide_lista(celula* l, celula* l1, celula* l2) {
+    while (l->prox != NULL) {
+        l = l->prox;
+        if (l->dado & 1) {
+            l1->prox = l;
+            l1 = l1->prox;
+            l2->prox = NULL;
         }
-
-        atual->prox = NULL;  // Desconecta o nó da lista original
-
-        atual = proximo;
+        else {
+            l2->prox = l;
+            l2 = l2->prox;
+            l1->prox = NULL;
+        }
     }
 }
