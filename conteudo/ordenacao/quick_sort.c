@@ -100,3 +100,27 @@ Mediana de três
     pior caso.
     
 */
+
+/*ESSA QEUSTÃO CAIU ANO PASSADO AN PROVA*/
+
+quick_sort(v, 0, 4) : 5 2 4 1 3
+    p = partition(v, 0, 4)
+        // 5 2 4 1 [3]
+        // 1 2 4 5 [3]
+        // 1 2 [3] 5 4
+    // 1 2 [3] 5 4
+    quick_sort(v, 0, 1) // : 1 2 3 5 4
+        p = partition(v, 0, 1)
+            //1 2
+        quick_sort(v, 0, 0) // : 1
+        quick_sort(v, 2, 1)
+        // 1 2
+    // 1 2 3 5 4
+    quick_sort(v, 3, 4) // : 1 2 3 5 4
+        p = partition(v, 3, 4)
+            // 5 4
+            // 4 5
+        quick_sort(v, 3, 2)
+        quick_sort(v, 4, 4) // : 5
+        // 4 5
+    // 1 2 3 4 5
