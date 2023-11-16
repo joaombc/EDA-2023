@@ -186,3 +186,48 @@ void mergeBU_sort{
         }
     }
 }
+
+
+/*QUESTÃO QUE CAIU ANO PASSADO*/
+
+merge_sort(v, 0, 5)
+meio = (5+0)/2 // = 2
+merge_sort(v,0,meio=2)  // : esquerda
+
+    m = (2+0)/2 // = 1
+    merge_sort(v,0,1) // : esquerda
+
+        m = (1+0)/2 // = 0
+        merge_sort(v, 0, 0) // : esquerda
+        merge_sort(v, 1, 1) // : direita
+        merge(v, 0, 0, 1)
+        // [6 5] 3 1 2 4 : 5 6
+
+    merge_sort(v, 2, 2) // direita
+    merge(v, 0, 1, 2)
+    // 5 6 3 1 2 4 : 3
+    // 5 6 3 1 2 4 : 3 5
+    // 5 6 3 1 2 4 : 3 5 6
+
+merge_sort(v, meio+1=3, 5) : direita
+    merge_sort(v, 3, 4) : esquerda
+    m = (4+3)/2 = 3
+        m = (5+3)/2 = 4
+        merge_sort(v, 3, 3) // : esquerda
+        merge_sort(v, 4, 4) // : direita
+        merge(v, 3, 3, 4)
+        // 5 6 1 2 4 : 1 2
+    merge_sort(v, 5, 5) // : direita
+    merge(v, 3, 4, 5)
+    // 3 5 6 1 2 4 : 1
+    // 3 5 6 1 2 4 : 1 2
+    // 3 5 6 1 2 4 : 1 2 4
+
+merge(v, 0, 2, 5)
+// 3 5 6 1 2 4 : 1
+// 3 5 6 1 2 4 : 1 2
+// 3 5 6 1 2 4 : 1 2 3
+// 3 5 6 1 2 4 : 1 2 3 4
+// 3 5 6 1 2 4 : 1 2 3 4 5
+// 3 5 6 1 2 4 : 1 2 3 4 5
+// 3 5 6 1 2 4 : 1 2 3 4 5 6
