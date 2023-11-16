@@ -209,8 +209,8 @@ merge_sort(v,0,meio=2)  // : esquerda
     // 5 6 3 1 2 4 : 3 5
     // 5 6 3 1 2 4 : 3 5 6
 
-merge_sort(v, meio+1=3, 5) : direita
-    merge_sort(v, 3, 4) : esquerda
+merge_sort(v, meio+1=3, 5) // : direita
+    merge_sort(v, 3, 4) // : esquerda
     m = (4+3)/2 = 3
         m = (5+3)/2 = 4
         merge_sort(v, 3, 3) // : esquerda
