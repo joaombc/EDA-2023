@@ -116,7 +116,7 @@ void bubble_sort(int v[], int l, int r){
 
 void bubble_sort(int v[], int l, int r){
     int swap = 1
-    for(; r>l $$ swap; r--){
+    for(; r>l && swap; r--){
         for(int j= l; j<r; j++){
             if (v[j]>v[j+1]){
                 exch(v[j], v[j+1]);
