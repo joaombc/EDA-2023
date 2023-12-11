@@ -31,3 +31,14 @@ void intro_sort (int *v , int l , int r ){
     intro (v , l , r , maxrecursao ) ;
     insertion_sort (v , l , r ) ;
 }
+
+/*
+Híbrido:
+    ▶ quick + merge(mais espaço) + insertion
+    ▶ quick + heap(maior constante) + insertion
+Solução para utilizar as eficiências e evitar as deficiências de cada método
+    ▶ insertion: pequenos vetores, quase ordenados
+    ▶ quick: bom desempenho na maioria dos casos
+    ▶ quando a profundidade da recursividade atinge um máximo estipulado,
+    aterna-se para outro método de ordenação
+*/
